@@ -1,0 +1,158 @@
+
+
+
+<%- include('./partials/boots') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<%- include('./findform') %>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<% if(JSON.stringify(aray)!='{}')  %>
+<%{ %>
+     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+       Click Here To See Total Tests Conducted So Far 
+      </button>
+
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        Total tests done : <%= aray.tests %>
+        Active Cases : <%= aray.active %>
+        Critical Cases: <%= aray.critical %>
+      </div>
+    </div>
+    <br>
+    <center>
+        <div class="card" style="width: 24rem;">
+    <button type="button" class="btn btn-info">Country : <span class="badge badge-light"><%= aray.country %></span>
+    <br>
+    Continent : <span class="badge badge-light"><%= aray.continent %></span>
+    <br>
+    Population : <span class="badge badge-light"><%=aray.population %></span>
+    </button><br>
+    <br><img src=<%=aray.countryInfo.flag %> class="img-fluid" alt="Responsive image"><br>
+    <br><button type="button" class="btn btn-danger">
+            Total Number Of Cases= <span class="badge badge-light"><%=aray.cases %></span>
+            <br>
+            Cases Of Today=<span class="badge badge-light"> <%=aray.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i> </span>
+        </button>
+      <br><br>
+
+      <button type="button" class="btn btn-success">
+        Total Number Of People Recovered= <span class="badge badge-light"><%=aray.recovered %></span><br>
+        People Recovered Today=<span class="badge badge-light" ><%=aray.todayRecovered%><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+  </button><br><br>
+  <button type="button" class="btn btn-dark">
+        Total Number Of Deaths= <span class="badge badge-light"><%=aray.deaths %></span><br>
+        Number of deaths today=<span class="badge badge-light"><%=aray.todayDeaths %><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+  </button><br><br>
+</div>
+   </center>
+
+
+
+   
+<% } %>
+
+<div >
+  <canvas id="myChart" width="200" height="300">
+    
+   </canvas>
+   
+
+  </div>
+  <br>
+  <br>
+    
+<script>
+  
+  
+var ctx = document.getElementById('myChart').getContext("2d");
+   var X_axis=JSON.parse('<%-JSON.stringify(graphs)%>').X_axis;
+   var Y_axis=JSON.parse('<%-JSON.stringify(graphs)%>').Y_axis;
+   var Ydeaths=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Deaths;
+   var Y_Recover=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Recover;
+   new Chart(ctx,{
+       type:'line',
+       data:{
+       labels: X_axis,
+       datasets: [{
+         label: "Timeline of covid-19: CASES VS DATE",
+         data: Y_axis,
+         backgroundColor:'black',
+        borderColor:'rgba(255, 0, 0, 0.3)',
+        borderWidth: 1.5
+
+       },
+       {        
+                label: 'Timeline of DEATHS VS DATES',
+                data: Ydeaths,
+                backgroundColor:'red',
+                borderColor:'rgba(255, 206, 86, 1)',
+                borderWidth: 1.5
+            },
+            {        
+                label: 'Timeline of   RECOVERED VS DATES',
+                data: Y_Recover,
+                backgroundColor:'green',
+                borderColor:'rgba(255, 206, 86, 1)',
+                borderWidth: 1.5
+            }
+
+            
+          ]
+     },
+       options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+   });
+    
+  
+    
+  </script>
+<h2>Statewise Covid-19 Data Of India</h2> 
+<% if(StateData.length>0){ %>
+ <div class="table-responsive-sm">          
+  <table class="table table-bordered">
+    <thead>
+      <tr style="background-color: yellow;">
+        <th>State</th>
+        <th>Total Cases</th>
+        <th>Active Cases</th>
+        <th>Recovered</th>
+        <th>Deaths</th>
+      </tr>
+    </thead>
+
+    <% StateData.forEach(function(data){ %>
+
+      <tbody>
+        <tr style="background-color: pink;">
+          
+          <td><%=data.name %></td>
+          <td><%=data.total %></td>
+          <td><%=data.active %></td>
+          <td><%=data.cured %></td>
+          <td><%=data.death %></td>
+          
+        </tr>
+      </tbody>
+    
+    
+    <% }) %>
+
+
+    </table>
+
+  </div>
+ <% } %>
+</html>
+
+<%-include('./footer') %>
