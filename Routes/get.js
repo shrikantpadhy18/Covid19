@@ -25,6 +25,7 @@ Router.get('/find',(req,res)=>{
     res.render('findform.ejs')
 })
 Router.post('/find',async(req,res)=>{
+    try{
     var aray={};
     const {countryname}=req.body;
     var cntry=String(countryname);
@@ -36,9 +37,18 @@ Router.post('/find',async(req,res)=>{
     //console.log(cntry);
     aray=await api.countries({country:String(countryname)}); 
     CountriesTimeline=await api.historical.countries({country:String(countryname),days:365});
+    var countrylist=[]
+
+    //list of all infected countries
+    countrylist=await api.countries();
+    var countOfCountry=countrylist.length;
     
     dta=await state.get('http://covid19-india-adhikansh.herokuapp.com/states');
     
+    //All state of a specified country
+    //
+
+
     StateData=[];
     StateData=dta.data.state;
     //console.log(StateData);
@@ -71,19 +81,27 @@ Router.post('/find',async(req,res)=>{
         X_axis: X_axis,
         Y_axis: Y_axis,
         Y_Deaths: Y_Deaths,
-        Y_Recover:Y_Recover
+        Y_Recover:Y_Recover,
+        
+        
       }
 
      
       
+         
 
-      
-    if(JSON.stringify(aray)=='{}'){
+    if(Object.keys(aray).length == 0){
         res.send("No such country exists");
     }
     else{
-    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData});
+    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData,countOfCountry:countOfCountry,countrylist:countrylist});
     }
+}
+catch(e){
+    res.render("error.ejs");
+}
+
+    
 });
 
 Router.get('/about',(req,res)=>{
