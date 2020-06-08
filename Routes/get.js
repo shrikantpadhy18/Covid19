@@ -1,5 +1,6 @@
 const api=require('novelcovid');
 const state=require('axios');
+const state1=require('axios');
 //Api for covid 19
 
 
@@ -34,24 +35,30 @@ Router.post('/find',async(req,res)=>{
     var CountriesTimeline={}
     
 
+    //dummy part of the code//
+        var collection=await state1.get('https://api.rootnet.in/covid19-in/stats/latest');
+        //console.log(collection.data.data.regional);
+    //
+
     //console.log(cntry);
     aray=await api.countries({country:String(countryname)}); 
-    CountriesTimeline=await api.historical.countries({country:String(countryname),days:365});
+    CountriesTimeline=await api.historical.countries({country:String(countryname),days:200});
     var countrylist=[]
 
     //list of all infected countries
     countrylist=await api.countries();
     var countOfCountry=countrylist.length;
     
-    dta=await state.get('http://covid19-india-adhikansh.herokuapp.com/states');
+    //the below commented api was giving static data
+    //dta=await state.get('http://covid19-india-adhikansh.herokuapp.com/states');
     
     //All state of a specified country
     //
 
 
-    StateData=[];
-    StateData=dta.data.state;
-    //console.log(StateData);
+    var StateData=[];
+    StateData=collection.data.data.regional;
+    console.log(StateData);
     
     //console.log(CountriesTimeline);
     //X-axis array will contain dates

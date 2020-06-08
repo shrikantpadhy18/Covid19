@@ -128,7 +128,8 @@ var ctx = document.getElementById('myChart').getContext("2d");
       <tr style="background-color: yellow;">
         <th>State</th>
         <th>Total Cases</th>
-        <th>Active Cases</th>
+        <th>Confirmed Foriegn Cases</th>
+        <th>Confirmed Indian Cases</th>
         <th>Recovered</th>
         <th>Deaths</th>
       </tr>
@@ -139,11 +140,12 @@ var ctx = document.getElementById('myChart').getContext("2d");
       <tbody>
         <tr style="background-color: pink;">
           
-          <td><%=data.name %></td>
-          <td><%=data.total %></td>
-          <td><%=data.active %></td>
-          <td><%=data.cured %></td>
-          <td><%=data.death %></td>
+          <td><%=data.loc %></td>
+          <td><%=data.totalConfirmed %></td>
+          <td><%=data.confirmedCasesForeign %></td>
+          <td><%=data.confirmedCasesIndian %></td>
+          <td><%=data.discharged %></td>
+          <td><%=data.deaths %></td>
           
         </tr>
       </tbody>
