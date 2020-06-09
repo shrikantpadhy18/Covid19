@@ -28,6 +28,7 @@ Router.get('/find',(req,res)=>{
 Router.post('/find',async(req,res)=>{
     try{
     var aray={};
+    var world={};
     const {countryname}=req.body;
     var cntry=String(countryname);
    
@@ -41,7 +42,9 @@ Router.post('/find',async(req,res)=>{
     //
 
     //console.log(cntry);
-    aray=await api.countries({country:String(countryname)}); 
+    aray=await api.countries({country:String(countryname)});
+     world=await api.all();
+    //console.log(aray2); 
     CountriesTimeline=await api.historical.countries({country:String(countryname),days:200});
     var countrylist=[]
 
@@ -101,7 +104,7 @@ Router.post('/find',async(req,res)=>{
         res.send("No such country exists");
     }
     else{
-    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData,countOfCountry:countOfCountry,countrylist:countrylist});
+    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData,countOfCountry:countOfCountry,countrylist:countrylist,world:world});
     }
 }
 catch(e){

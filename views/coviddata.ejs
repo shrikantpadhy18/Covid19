@@ -8,7 +8,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <h5 style="color: red;">Total Infected Countries: <%= countOfCountry %></h5>
+  <h5 style="color: red;">Total Infected Countries: <%= countOfCountry %></h5><br>
+  
+  <h6>
+    <p style="color: black;">Cases World Wide : <%=world.cases %> (<%=world.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+    <br><p style="color: red;">Deaths World Wide : <%=world.deaths %> (<%=world.todayDeaths %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+    <br><p style="color: green;">Recovered World Wide : <%=world.recovered %> (<%=world.todayRecovered %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+  </h6>
 <% if(JSON.stringify(aray)!='{}')  %>
 <%{ %>
      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -140,7 +146,7 @@ var ctx = document.getElementById('myChart').getContext("2d");
       <tbody>
         <tr >
           
-          <td><p style="color: rgb(126, 24, 87);"><%=data.loc %></p></td>
+          <td><b><p style="color: rgb(126, 24, 87);"><%=data.loc %></p></b></td>
           <td><p style="color: rgb(146, 11, 22);"><%=data.totalConfirmed %></p></td>
           <td><p style="color: rgb(83, 42, 42);"><%=data.confirmedCasesForeign %></p></td>
           <td><p style="color: rgb(105, 9, 9);"><%=data.confirmedCasesIndian %></p></td>
