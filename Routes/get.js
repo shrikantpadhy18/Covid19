@@ -58,7 +58,7 @@ Router.post('/find',async(req,res)=>{
 
     var StateData=[];
     StateData=collection.data.data.regional;
-    console.log(StateData);
+    //console.log(StateData);
     
     //console.log(CountriesTimeline);
     //X-axis array will contain dates

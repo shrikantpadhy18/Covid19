@@ -8,7 +8,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+  <h5 style="color: red;">Total Infected Countries: <%= countOfCountry %></h5>
 <% if(JSON.stringify(aray)!='{}')  %>
 <%{ %>
      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -21,13 +21,13 @@
         Active Cases : <%= aray.active %>
         Critical Cases: <%= aray.critical %>
 
-        Total Infected Countries: <%= countOfCountry %>
+        
       </div>
     </div>
     <br>
     <center>
       
-        <div class="card" style="width: 24rem;">
+        <div  class="card" style="width: 24rem;">
     <button type="button" class="btn btn-info">Country : <span class="badge badge-light"><%= aray.country %></span>
     <br>
     Continent : <span class="badge badge-light"><%= aray.continent %></span>
@@ -138,14 +138,14 @@ var ctx = document.getElementById('myChart').getContext("2d");
     <% StateData.forEach(function(data){ %>
 
       <tbody>
-        <tr style="background-color: pink;">
+        <tr >
           
-          <td><%=data.loc %></td>
-          <td><%=data.totalConfirmed %></td>
-          <td><%=data.confirmedCasesForeign %></td>
-          <td><%=data.confirmedCasesIndian %></td>
-          <td><%=data.discharged %></td>
-          <td><%=data.deaths %></td>
+          <td><p style="color: rgb(126, 24, 87);"><%=data.loc %></p></td>
+          <td><p style="color: rgb(146, 11, 22);"><%=data.totalConfirmed %></p></td>
+          <td><p style="color: rgb(83, 42, 42);"><%=data.confirmedCasesForeign %></p></td>
+          <td><p style="color: rgb(105, 9, 9);"><%=data.confirmedCasesIndian %></p></td>
+          <td><p style="color: rgb(23, 134, 23);"><%=data.discharged %></p></td>
+          <td style="color: rgb(248, 7, 7);"><%=data.deaths %></td>
           
         </tr>
       </tbody>
