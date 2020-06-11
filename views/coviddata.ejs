@@ -17,30 +17,40 @@
   
 
   <body style="background-color: black;">
-  <h5 style="color: red;">Total Infected Countries: <%= countOfCountry %></h5><br>
   
+  <center>
   <h6>
-    <p style="color:orange">Cases World Wide : <%=world.cases %> (<%=world.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
-    <br><p style="color: red;">Deaths World Wide : <%=world.deaths %> (<%=world.todayDeaths %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
-    <br><p style="color: green;">Recovered World Wide : <%=world.recovered %> (<%=world.todayRecovered %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+    <div  class="card" style="width: 18rem;display: inline-block;">
+    <b><p style="color: red;">Total Infected Countries :<br> <%= countOfCountry %></p></b>
+    </div>
+    <div  class="card" style="width: 18rem;display: inline-block;">
+    <p style="color:orange">Cases World Wide :<br> <%=world.cases %> (<%=world.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+  </div>
+  <div  class="card" style="width: 18rem;display: inline-block;">
+    <p style="color: red;">Deaths World Wide :<br> <%=world.deaths %> (<%=world.todayDeaths %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+  </div>
+  <div  class="card" style="width: 18rem;display: inline-block;">
+    <p style="color: green;">Recovered World Wide :<br> <%=world.recovered %> (<%=world.todayRecovered %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+  </div>
   </h6>
+</center>
 <% if(JSON.stringify(aray)!='{}')  %>
 <%{ %>
      
 <center>
   <div  class="card" style="width: 18rem;display: inline-block;">
-        <p style="color:green;">Total tests done : <%= aray.tests %></p>
+        <p style="color:green;">Total tests done in <%= aray.country %> : <br> <%= aray.tests %></p>
           
       
     </div>
     <div  class="card" style="width: 18rem; display: inline-block;">
      
-        <p style="color: red;">Active Cases : <%= aray.active %></p>
+        <p style="color: red;">Active Cases in <%= aray.country %> :<br> <%= aray.active %></p>
         </div>
        
         <div  class="card" style="width: 18rem;display: inline-block;">
           
-        <p style="color: red;">Critical Cases: <%= aray.critical %></p>
+        <p style="color: red;">Critical Cases in  <%= aray.country %>: <br> <%= aray.critical %></p>
             </div>
           </center>      
     <br>
