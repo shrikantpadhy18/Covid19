@@ -2,38 +2,52 @@
 
 
 <%- include('./partials/boots') %>
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+
+
 <%- include('./findform') %>
+
 
 <!DOCTYPE html>
 <html lang="en">
+  
+
+  <body style="background-color: black;">
   <h5 style="color: red;">Total Infected Countries: <%= countOfCountry %></h5><br>
   
   <h6>
-    <p style="color: black;">Cases World Wide : <%=world.cases %> (<%=world.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
+    <p style="color:orange">Cases World Wide : <%=world.cases %> (<%=world.todayCases %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
     <br><p style="color: red;">Deaths World Wide : <%=world.deaths %> (<%=world.todayDeaths %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
     <br><p style="color: green;">Recovered World Wide : <%=world.recovered %> (<%=world.todayRecovered %><i class="fa fa-arrow-up" aria-hidden="true"></i>)</p>
   </h6>
 <% if(JSON.stringify(aray)!='{}')  %>
 <%{ %>
-     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-       Click Here To See Total Tests Conducted in <%= aray.country %> So Far 
-      </button>
-
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        Total tests done : <%= aray.tests %>
-        Active Cases : <%= aray.active %>
-        Critical Cases: <%= aray.critical %>
-
-        
-      </div>
+     
+<center>
+  <div  class="card" style="width: 18rem;display: inline-block;">
+        <p style="color:green;">Total tests done : <%= aray.tests %></p>
+          
+      
     </div>
+    <div  class="card" style="width: 18rem; display: inline-block;">
+     
+        <p style="color: red;">Active Cases : <%= aray.active %></p>
+        </div>
+       
+        <div  class="card" style="width: 18rem;display: inline-block;">
+          
+        <p style="color: red;">Critical Cases: <%= aray.critical %></p>
+            </div>
+          </center>      
     <br>
     <center>
       
         <div  class="card" style="width: 24rem;">
+          
     <button type="button" class="btn btn-info">Country : <span class="badge badge-light"><%= aray.country %></span>
     <br>
     Continent : <span class="badge badge-light"><%= aray.continent %></span>
@@ -59,13 +73,13 @@
 </div>
    </center>
 
-
+   
 
    
 <% } %>
 
-<div >
-  <canvas id="myChart" width="200" height="300">
+<div  >
+  <canvas  id="myChart" width="200" height="300">
     
    </canvas>
    
@@ -90,7 +104,7 @@ var ctx = document.getElementById('myChart').getContext("2d");
          label: "Timeline of covid-19: CASES VS DATE",
          data: Y_axis,
          
-        borderColor:'rgb(0,0,0,1)',
+        borderColor:'orange',
         borderWidth: 1.5
 
        },
@@ -126,9 +140,12 @@ var ctx = document.getElementById('myChart').getContext("2d");
   
     
   </script>
-<h2>Statewise Covid-19 Data Of India</h2> 
+<h2 style="color:blue ;">Statewise Covid-19 Data Of India</h2> 
+<div  class="card" >
 <% if(StateData.length>0){ %>
- <div class="table-responsive-sm">          
+  
+ <div class="table-responsive-sm">
+             
   <table class="table table-bordered">
     <thead>
       <tr style="background-color: yellow;">
@@ -147,11 +164,11 @@ var ctx = document.getElementById('myChart').getContext("2d");
         <tr >
           
           <td><b><p style="color: rgb(126, 24, 87);"><%=data.loc %></p></b></td>
-          <td><p style="color: rgb(146, 11, 22);"><%=data.totalConfirmed %></p></td>
+          <td><b><p style="color: rgb(146, 11, 22);"><%=data.totalConfirmed %></b></p></td>
           <td><p style="color: rgb(83, 42, 42);"><%=data.confirmedCasesForeign %></p></td>
           <td><p style="color: rgb(105, 9, 9);"><%=data.confirmedCasesIndian %></p></td>
-          <td><p style="color: rgb(23, 134, 23);"><%=data.discharged %></p></td>
-          <td style="color: rgb(248, 7, 7);"><%=data.deaths %></td>
+          <td><b><p style="color: rgb(23, 134, 23);"><%=data.discharged %></p></b></td>
+          <td style="color: rgb(248, 7, 7);"><b><%=data.deaths %></b></td>
           
         </tr>
       </tbody>
@@ -163,7 +180,10 @@ var ctx = document.getElementById('myChart').getContext("2d");
     </table>
 
   </div>
+
  <% } %>
+</div>
+  </body>
 </html>
 
 <%-include('./footer') %>
