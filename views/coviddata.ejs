@@ -98,61 +98,12 @@
    
 
   </div>
+
+  
   <br>
   <br>
     
-<script>
-  
-  
-var ctx = document.getElementById('myChart').getContext("2d");
-   var X_axis=JSON.parse('<%-JSON.stringify(graphs)%>').X_axis;
-   var Y_axis=JSON.parse('<%-JSON.stringify(graphs)%>').Y_axis;
-   var Ydeaths=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Deaths;
-   var Y_Recover=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Recover;
-   new Chart(ctx,{
-       type:'line',
-       data:{
-       labels: X_axis,
-       datasets: [{
-         label: "Timeline of covid-19: CASES VS DATE",
-         data: Y_axis,
-         
-        borderColor:'orange',
-        borderWidth: 1.5
 
-       },
-       {        
-                label: 'Timeline of DEATHS VS DATES',
-                data: Ydeaths,
-                
-                borderColor:'rgb(255,0,0,1)',
-                borderWidth: 1.5
-            },
-            {        
-                label: 'Timeline of   RECOVERED VS DATES',
-                data: Y_Recover,
-                
-                borderColor:'rgb(0,128,0,1)',
-                borderWidth: 1.5
-            }
-
-            
-          ]
-     },
-       options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-   });
-    
-  
-    
-  </script>
 <h2 style="color:blue ;">Statewise Covid-19 Data Of India</h2> 
 <div  class="card" >
 <% if(StateData.length>0){ %>
@@ -196,6 +147,237 @@ var ctx = document.getElementById('myChart').getContext("2d");
 
  <% } %>
 </div>
+<br>
+<hr>
+<br>
+<div >
+  <h4 style="color: aqua;">Statewise Cases:Diagrammatic Representation</h4>
+  <canvas  id="myChartStateCase" width="200" height="300">
+  
+  </canvas>
+  <br>
+  <h4 style="color: red;">Statewise Deaths:Diagrammatic Representation</h4>
+  <canvas  id="myChartStateDeath" width="200" height="300">
+  
+  </canvas>
+  <br>
+  <h4 style="color:green;">Statewise Recovery:Diagrammatic Representation</h4>
+  <canvas  id="myChartStateRecover" width="200" height="300">
+  
+  </canvas>
+
+</div>
+<script>
+  
+  
+  var ctx = document.getElementById('myChart').getContext("2d");
+     var X_axis=JSON.parse('<%-JSON.stringify(graphs)%>').X_axis;
+     var Y_axis=JSON.parse('<%-JSON.stringify(graphs)%>').Y_axis;
+     var Ydeaths=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Deaths;
+     var Y_Recover=JSON.parse('<%-JSON.stringify(graphs)%>').Y_Recover;
+     new Chart(ctx,{
+         type:'line',
+         data:{
+         labels: X_axis,
+         datasets: [{
+           label: "Timeline of covid-19: CASES VS DATE",
+           data: Y_axis,
+           
+          borderColor:'orange',
+          borderWidth: 1.5
+  
+         },
+         {        
+                  label: 'Timeline of DEATHS VS DATES',
+                  data: Ydeaths,
+                  
+                  borderColor:'rgb(255,0,0,1)',
+                  borderWidth: 1.5
+              },
+              {        
+                  label: 'Timeline of   RECOVERED VS DATES',
+                  data: Y_Recover,
+                  
+                  borderColor:'rgb(0,128,0,1)',
+                  borderWidth: 1.5
+              }
+  
+              
+            ]
+       },
+         options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+     });
+    
+     var StateName=JSON.parse('<%-JSON.stringify(StateWiseStat) %>').StateName;
+     var StateCase=JSON.parse('<%-JSON.stringify(StateWiseStat) %>').StateCase;
+     var StateRecover=JSON.parse('<%-JSON.stringify(StateWiseStat) %>').StateRecover;
+     var StateDeath=JSON.parse('<%-JSON.stringify(StateWiseStat) %>').StateDeath;
+    var ctx1 = document.getElementById("myChartStateCase");
+    new Chart(ctx1, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                label: 'STATE TOTAL CASE ANALYSIS',
+                data: StateCase,
+                backgroundColor: [
+                    'red',//1
+                    'orange',//2
+                    'yellow',//3
+                    'green',//4
+                    'blue',//5
+                    '#0048BA',//6
+                    '#B0BF1A',//7
+                    '#7CB9E8',//8
+                    '#B284BE',//9
+                    '#72A0C1',//10
+                    '#EDEAE0',//11
+                    '#C46210',//12
+                    '#E52B50',//13
+                    '#9F2B68',//14
+                    '#F19CBB',//15
+                    '#3B7A57',//16
+                    '#FF7E00',//17
+                    '#A4C639', //18
+                    '#665D1E',//19
+                    '#915C83',//20
+                    '#841B2D',//21
+                    '#FAEBD7',//22
+                    '#008000',//23
+                    '#FBCEB1',//24
+                    '#00FFFF',//25
+                    '#D0FF14',//26
+                    '#8F9779',//27
+                    '#A52A2A',//28
+                    '#F0FFFF',//29
+                    '#89CFF0',//30
+                    '#DA1884',//31
+                    '#BCD4E6',//32
+                    '#54626F',//33
+                    '#660000',//34
+                    '#CC5500'
+                ],
+            }],
+            labels: StateName
+            },
+            options: {
+                    responsive: true
+            }
+        });
+        var ctx2 = document.getElementById("myChartStateDeath");
+    new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                label: 'STATE TOTAL Death ANALYSIS',
+                data: StateDeath,
+                backgroundColor: [
+                    'red',//1
+                    'orange',//2
+                    'yellow',//3
+                    'green',//4
+                    'blue',//5
+                    '#0048BA',//6
+                    '#B0BF1A',//7
+                    '#7CB9E8',//8
+                    '#B284BE',//9
+                    '#72A0C1',//10
+                    '#EDEAE0',//11
+                    '#C46210',//12
+                    '#E52B50',//13
+                    '#9F2B68',//14
+                    '#F19CBB',//15
+                    '#3B7A57',//16
+                    '#FF7E00',//17
+                    '#A4C639', //18
+                    '#665D1E',//19
+                    '#915C83',//20
+                    '#841B2D',//21
+                    '#FAEBD7',//22
+                    '#008000',//23
+                    '#FBCEB1',//24
+                    '#00FFFF',//25
+                    '#D0FF14',//26
+                    '#8F9779',//27
+                    '#A52A2A',//28
+                    '#F0FFFF',//29
+                    '#89CFF0',//30
+                    '#DA1884',//31
+                    '#BCD4E6',//32
+                    '#54626F',//33
+                    '#660000',//34
+                    '#CC5500'
+                ],
+            }],
+            labels: StateName
+            },
+            options: {
+                    responsive: true
+            }
+        });
+
+        var ctx3 = document.getElementById("myChartStateRecover");
+    new Chart(ctx3, {
+        type: 'pie',
+        data: {
+            datasets: [{
+                label: 'STATE TOTAL RECOVERY/DISCHARGED ANALYSIS',
+                data: StateRecover,
+                backgroundColor: [
+                    'red',//1
+                    'orange',//2
+                    'yellow',//3
+                    'green',//4
+                    'blue',//5
+                    '#0048BA',//6
+                    '#B0BF1A',//7
+                    '#7CB9E8',//8
+                    '#B284BE',//9
+                    '#72A0C1',//10
+                    '#EDEAE0',//11
+                    '#C46210',//12
+                    '#E52B50',//13
+                    '#9F2B68',//14
+                    '#F19CBB',//15
+                    '#3B7A57',//16
+                    '#FF7E00',//17
+                    '#A4C639', //18
+                    '#665D1E',//19
+                    '#915C83',//20
+                    '#841B2D',//21
+                    '#FAEBD7',//22
+                    '#008000',//23
+                    '#FBCEB1',//24
+                    '#00FFFF',//25
+                    '#D0FF14',//26
+                    '#8F9779',//27
+                    '#A52A2A',//28
+                    '#F0FFFF',//29
+                    '#89CFF0',//30
+                    '#DA1884',//31
+                    '#BCD4E6',//32
+                    '#54626F',//33
+                    '#660000',//34
+                    '#CC5500'
+                ],
+            }],
+            labels: StateName
+            },
+            options: {
+                    responsive: true
+            }
+        });
+      
+    
+      
+    </script>
   </body>
 </html>
 

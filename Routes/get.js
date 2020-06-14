@@ -62,7 +62,26 @@ Router.post('/find',async(req,res)=>{
     var StateData=[];
     StateData=collection.data.data.regional;
     //console.log(StateData);
-    
+    //list containing state cases total
+    var StateCase=[]
+
+    //list containing deaths in states
+    var StateDeath=[]
+
+    //list containing recovered cases in States
+    var StateRecover=[]
+
+    //list Containing State Names
+    var StateName=[]
+    StateData.forEach((i)=>{
+        
+            StateName.push(i.loc);
+            StateCase.push(i.totalConfirmed);
+            StateRecover.push(i.discharged);
+            StateDeath.push(i.deaths);
+        
+    });
+    //console.log(StateName.length);
     //console.log(CountriesTimeline);
     //X-axis array will contain dates
        
@@ -95,16 +114,21 @@ Router.post('/find',async(req,res)=>{
         
         
       }
+      var StateWiseStat={
+        StateName:StateName,
+        StateCase:StateCase,
+        StateDeath:StateDeath,
+        StateRecover:StateRecover,
+      }
 
      
       
-         
 
     if(Object.keys(aray).length == 0){
         res.send("No such country exists");
     }
     else{
-    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData,countOfCountry:countOfCountry,countrylist:countrylist,world:world});
+    res.render('coviddata.ejs',{aray:aray,graphs:graphs,StateData:StateData,countOfCountry:countOfCountry,countrylist:countrylist,world:world,StateWiseStat:StateWiseStat});
     }
 }
 catch(e){
