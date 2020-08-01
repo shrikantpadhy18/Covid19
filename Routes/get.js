@@ -25,6 +25,10 @@ Router.get('/',(req,res)=>{
 Router.get('/find',(req,res)=>{
     res.render('findform.ejs')
 })
+
+Router.get('/map',(req,res)=>{
+    res.render('worldmap.ejs')
+})
 Router.post('/find',async(req,res)=>{
     try{
     var aray={};
