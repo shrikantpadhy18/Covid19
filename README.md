@@ -6,21 +6,21 @@ This is a website  which tracks the data of covid-19 patients on daily basis,thi
 link: https://covidwebapp.herokuapp.com/
 
 <br>
-<img src="../screenshots/home.jpg">
+<img src="./screenshots/home.jpg">
 <br>
-<img src="../screenshots/secondscreen.jpg">
+<img src="./screenshots/secondscreen.jpg">
 <br>
-<img src="../screenshots/analytics.jpg">
-<img src="../screenshots/lineargraph.jpg">
+<img src="./screenshots/analytics.jpg">
+<img src="./screenshots/lineargraph.jpg">
 <br>
-<img src="../screenshots/tabulardata.jpg">
+<img src="./screenshots/tabulardata.jpg">
 <br>
-<img src="../screenshots/piechart1.jpg">
+<img src="./screenshots/piechart1.jpg">
 <br>
-<img src="../screenshots/piechart2.jpg">
+<img src="./screenshots/piechart2.jpg">
 <br>
-<img src="../screenshots/piechart3.jpg">
+<img src="./screenshots/piechart3.jpg">
 <br>
-<img src="../screenshots/worldmap1.jpg">
+<img src="./screenshots/worldmap1.jpg">
 <br>
-<img src="../screenshots/worldmap2.jpg">
+<img src="./screenshots/worldmap2.jpg">
